@@ -106,12 +106,3 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
-
-
-//login modal
-
-  $("#age").shieldMaskedTextBox({
-      enabled: true,
-      mask: "00/00/0000",
-      value: "00/00/0000"
-  });
