@@ -44,7 +44,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header border-bottom-0">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="buttoncloselogin" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -63,7 +63,9 @@
               <button type="button" class="btn btn-info btn-block btn-round">Inicia sesión</button>
             </form>
              <div class="modal-footerw d-flex justify-content-center">
-          <div class="signup-section">No tienes cuenta? <a href="#a" class="text-info"> Regístrate</a></div>
+          <div class="signup-section">No tienes cuenta?</div>
+          <button class="registrateboton" data-dismiss="modal" data-toggle="modal" data-target="#myModal2"> Regístrate
+          </button>
         </div>
           </div>
         </div>
@@ -71,6 +73,70 @@
        
     </div>
   </div>
+
+
+  <!--Modal login-->
+
+            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                           
+                            <h4 class="modal-title" id="myModalLabel">Registration form</h4> <button class="buttoncloselogin" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="pb-modalreglog-form-reg">
+                        
+                                <div class="form-group">
+                                    <label for="email">Email address</label>
+                                    <div class="input-group pb-modalreglog-input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <div class="input-group pb-modalreglog-input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                        <input type="password" class="form-control" id="inputPws" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmpassword">Confirm password</label>
+                                    <div class="input-group pb-modalreglog-input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                        <input type="password" class="form-control" id="inputConfirmPws" placeholder="Confirm Password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="country">Country</label>
+                                    <div class="input-group pb-modalreglog-input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
+                                        <input type="text" class="form-control" id="countries" placeholder="Country">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="age">Age</label>
+                                    <div class="input-group pb-modalreglog-input-group">
+                                        <input id="age">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" id="ch" name="chs">
+                                    I agree with <a href="#">terms and conditions.</a>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            <button class="btn btn-info">Sign up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         
         <!-- About-->
