@@ -345,9 +345,6 @@ button {
   border-radius: 0;
 }
 
-button:focus:not(:focus-visible) {
-  outline: 0;
-}
 
 input,
 button,
@@ -363,21 +360,6 @@ textarea {
 button,
 select {
   text-transform: none;
-}
-
-[role=button] {
-  cursor: pointer;
-}
-
-select {
-  word-wrap: normal;
-}
-select:disabled {
-  opacity: 1;
-}
-
-[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator {
-  display: none !important;
 }
 
 button,
