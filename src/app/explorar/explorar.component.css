@@ -28,3 +28,106 @@ div.masthead {
       font-size: 3.5rem;
     }
   }
+
+
+  .gallery-title
+  {
+      font-weight: 500;
+      font-size: 36px;
+      color: #ffffff;
+      text-align: center;
+      font-weight: 500;
+      margin-bottom: 30px;
+  }
+ 
+  .filter-button
+  {
+   
+    width: 15%;
+    font-weight: 500;
+    margin: 0px 20px 30px 10px;
+    --bs-btn-color: #000000;
+    --bs-btn-bg: rgba(54, 150, 126 , 0.8);
+    --bs-btn-border-color: rgba(54, 150, 126 , 0.8);
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-hover-bg: rgba(0, 17, 80, 0.8); 
+    --bs-btn-hover-border-color:rgba(0, 17, 80, 0.8); 
+    --bs-btn-focus-shadow-rgb: 11, 172, 204;
+    --bs-btn-active-color: #ffffff;
+    --bs-btn-active-bg: rgba(0, 17, 80, 0.8); 
+    --bs-btn-active-border-color:rgba(0, 17, 80, 0.8); 
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #000;
+    --bs-btn-disabled-bg: rgba(54, 150, 126 , 0.8);
+    --bs-btn-disabled-border-color: rgba(54, 150, 126 , 0.8);
+    border-radius: 20px;
+  }
+  .filter-button:hover
+  {
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-hover-bg: rgba(0, 17, 80, 0.8); 
+    --bs-btn-hover-border-color:rgba(0, 17, 80, 0.8); 
+  
+  }
+  .btn-default:active .filter-button:active
+  {
+    --bs-btn-active-color: #ffffff;
+    --bs-btn-active-bg: rgba(0, 17, 80, 0.8); 
+    --bs-btn-active-border-color:rgba(0, 17, 80, 0.8); 
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+  
+  .port-image
+  {
+      width: 100%;
+  }
+  
+  .gallery_product
+  {
+      margin-bottom: 20px;
+      text-align-last: center;
+  }
+  
+
+  .center{
+    text-align: center;
+  }
+
+  .img-responsive{
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    
+  }
+  
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  width: 90%;
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #000000;
+  opacity: 0.5;
+  color: white;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 16px 32px;
+}
