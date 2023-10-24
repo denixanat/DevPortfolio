@@ -42,33 +42,25 @@ div.masthead {
  
   .filter-button
   {
-   
     width: 15%;
     font-weight: 500;
     margin: 0px 20px 30px 10px;
     --bs-btn-color: #000000;
     --bs-btn-bg: rgba(54, 150, 126 , 0.8);
     --bs-btn-border-color: rgba(54, 150, 126 , 0.8);
-    --bs-btn-hover-color: #ffffff;
-    --bs-btn-hover-bg: rgba(0, 17, 80, 0.8); 
-    --bs-btn-hover-border-color:rgba(0, 17, 80, 0.8); 
     --bs-btn-focus-shadow-rgb: 11, 172, 204;
-    --bs-btn-active-color: #ffffff;
-    --bs-btn-active-bg: rgba(0, 17, 80, 0.8); 
-    --bs-btn-active-border-color:rgba(0, 17, 80, 0.8); 
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
     --bs-btn-disabled-color: #000;
     --bs-btn-disabled-bg: rgba(54, 150, 126 , 0.8);
     --bs-btn-disabled-border-color: rgba(54, 150, 126 , 0.8);
     border-radius: 20px;
   }
+
   .filter-button:hover
   {
     --bs-btn-hover-color: #ffffff;
-    --bs-btn-hover-bg: rgba(0, 17, 80, 0.8); 
-    --bs-btn-hover-border-color:rgba(0, 17, 80, 0.8); 
-  
+    --bs-btn-hover-bg: rgba(0, 80, 11, 0.8); 
   }
+
   .btn-default:active .filter-button:active
   {
     --bs-btn-active-color: #ffffff;
@@ -130,4 +122,20 @@ div.masthead {
   font-weight: 400;
   font-size: 16px;
   padding: 16px 32px;
+}
+
+.filter-button[data-filter="all"] {
+  background-color: #A8E6CF;
+}
+.filter-button[data-filter="hdpe"] {
+  background-color: #DCEDC1;
+}
+.filter-button[data-filter="sprinkle"] {
+  background-color: #FFD3B6;
+}
+.filter-button[data-filter="spray"] {
+  background-color: #FFAAA5;
+}
+.filter-button[data-filter="irrigation"] {
+  background-color: #c5a8e6;
 }
