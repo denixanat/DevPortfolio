@@ -9,4 +9,7 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ]
 })
-export class ExplorarModule { }
+export class ExplorarComponent {
+  // Flag to indicate that you are on the 'explorar' module
+  isExplorarModule = true;
+}

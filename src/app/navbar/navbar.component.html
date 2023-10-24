@@ -6,10 +6,11 @@
             </button>
             <div class="dropdown navbar-dropdown" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Ventajas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
-                    <li class="nav-item"><a routerLink="./explorar" class="nav-link">Explorar</a></li>
+
+                    <li class="nav-item"><a href="#about" class="nav-link" *ngIf="!isExplorarPerfilModule">About</a></li>
+                    <li class="nav-item"><a href="#services" class="nav-link" *ngIf="!isExplorarPerfilModule">Ventajas</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link" *ngIf="!isExplorarPerfilModule">Contacto</a></li>
+                    <li class="nav-item"><a [routerLink]="['./explorar']" class="nav-link" *ngIf="!isExplorarPerfilModule">Explorar</a></li>
                     <li class="nav-item"><a routerLink="./perfil" class="nav-link">Perfil</a></li>
                 </ul>
             </div>

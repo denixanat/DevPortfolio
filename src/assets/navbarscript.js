@@ -140,7 +140,7 @@ $(this).addClass("active");
 
 
 
-// Add this JavaScript code to your component or a separate script file.
+// function 2
 document.addEventListener("DOMContentLoaded", function () {
   const anchorLinks = document.querySelectorAll('a[href^="#"]');
   anchorLinks.forEach(function (link) {
