@@ -108,8 +108,6 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 ///////////
-
-
 $(document).ready(function(){
 
     $(".filter-button").click(function(){

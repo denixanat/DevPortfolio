@@ -95,34 +95,49 @@ div.masthead {
     
   }
   
-.middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 90%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-  width: 90%;
-}
-
-.container:hover .image {
-  opacity: 0.3;
-}
-
-.container:hover .middle {
-  opacity: 1;
-}
-
-.text {
-  background-color: #000000;
-  opacity: 0.5;
-  color: white;
-  font-weight: 400;
-  font-size: 16px;
-  padding: 16px 32px;
-}
+  .gallery_product {
+    position: relative;
+    cursor: pointer; /* Change the cursor to "pointer" when not hovering */
+  }
+  
+  .gallery_product:hover {
+    cursor: pointer; /* Change the cursor to "pointer" when hovering */
+  }
+  
+  /* Define the hover effect for .middle */
+  .gallery_product:hover .middle {
+    opacity: 1;
+  }
+  
+  /* Define the hover effect for .image */
+  .gallery_product:hover .image {
+    opacity: 0.3;
+  }
+  
+  .middle {
+    transition: 0.5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 90%;
+  }
+  
+  .image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .text {
+    background-color: #000000;
+    opacity: 0.5;
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 16px 32px;
+  }
 
 .filter-button[data-filter="all"] {
   background-color: #A8E6CF;
