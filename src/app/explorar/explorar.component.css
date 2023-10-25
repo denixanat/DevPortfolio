@@ -1,4 +1,7 @@
+
+
 div.masthead {
+    min-height: 100vh;
     padding-top: 5rem;
     background: linear-gradient(to bottom, rgba(54, 150, 126 , 0.8) 0%, rgba(0, 17, 80, 0.8) 100%);
     background-position: center;
@@ -28,6 +31,8 @@ div.masthead {
       font-size: 3.5rem;
     }
   }
+
+
 
 
   .gallery-title
@@ -98,7 +103,20 @@ div.masthead {
   .gallery_product {
     position: relative;
     cursor: pointer; /* Change the cursor to "pointer" when not hovering */
-  }
+
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
+.gallery_product img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%}
+
+
+
+
   
   .gallery_product:hover {
     cursor: pointer; /* Change the cursor to "pointer" when hovering */
@@ -153,4 +171,10 @@ div.masthead {
 }
 .filter-button[data-filter="irrigation"] {
   background-color: #c5a8e6;
+}
+
+
+.container-wrapper{
+  height: 100%;
+  overflow-y: auto; /* Allow the content to scroll vertically if it overflows */
 }

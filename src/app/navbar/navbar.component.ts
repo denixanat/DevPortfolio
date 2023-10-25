@@ -7,14 +7,17 @@ import { Router, NavigationEnd } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent {
-  isExplorarPerfilModule: boolean = false;
+  isExplorarModule: boolean = false;
+  isPerfilModule: boolean = false;
 
   constructor(private router: Router) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const currentRoute = event.url.split('/')[1]; // Get the first segment of the route
-        this.isExplorarPerfilModule = currentRoute === 'explorar' || currentRoute === 'perfil';
+        this.isExplorarModule = currentRoute === 'explorar';
+        this.isPerfilModule = currentRoute === 'perfil';
       }
     });
   }
