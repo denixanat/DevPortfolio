@@ -6,11 +6,12 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
-{path: "home", component: WelcomeComponent},
-{path: "explorar", component: ExplorarComponent}, 
-{ path: "non-Page", component: WelcomeComponent},
-{ path: "perfil", component: PerfilComponent},
-{ path: '**', redirectTo: '/home', pathMatch: 'full' },
+  { path: "home", component: WelcomeComponent },
+  { path: "explorar", component: ExplorarComponent },
+  { path: "non-Page", component: WelcomeComponent },
+  { path: "perfil", component: PerfilComponent },
+  { path: "", redirectTo: "home", pathMatch: "full"},
+  { path: '**', redirectTo: 'non-Page', pathMatch: 'full' },
 ];
 
 @NgModule({
