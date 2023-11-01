@@ -1,0 +1,32 @@
+
+
+div.masthead {
+  min-height: 100vh;
+  padding-top: 3rem;
+  background: linear-gradient(to bottom, rgba(54, 150, 126 , 0.8) 0%, rgba(0, 17, 80, 0.8) 100%);
+  background-position: center;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+ 
+  .container-wrapper{
+    height: 100%;
+    overflow-y: auto; /* Allow the content to scroll vertically if it overflows */
+    text-align: -webkit-center;
+  }
+
+.col{
+  width: 100%;
+}
+
+.card{
+  border: none;
+}
+
+.container{
+
+  margin-right: 0px;
+  margin-left: 0px;
+
+}
