@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
         <div class="container px-4 px-lg-5">
+            
             <a class="navbar-brand" routerLink="./home" href="#page-top">DevP</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="dropdown" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -9,8 +10,24 @@
 
                     <li class="nav-item"><a href="#about" class="nav-link" *ngIf="!isExplorarModule && !isPerfilModule" >About</a></li>
                     <li class="nav-item"><a href="#services" class="nav-link" *ngIf="!isExplorarModule && !isPerfilModule" >Ventajas</a></li>
-                    <li class="nav-item"><a href="#contact" class="nav-link" *ngIf="!isExplorarModule && !isPerfilModule" >Contacto</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link" *ngIf="!isExplorarModule && !isPerfilModule"  >Contacto</a></li>
                     <li class="nav-item"><a [routerLink]="['./explorar']" class="nav-link" *ngIf="!isExplorarModule">Explorar</a></li>
+
+            
+                    <li class="nav-item" *ngIf="isExplorarModule">
+                        <form class="form-inline">
+                          <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                            <div class="input-group-append">
+                              <button class="btn btn-outline-secondary" type="button">
+                                <i class="fa fa-search"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </form>
+                    </li>
+                      
+                    
                     <li class="nav-item"><a [routerLink]="['./perfil']" class="nav-link" *ngIf="!isPerfilModule">Perfil</a></li>
                 </ul>
             </div>

@@ -2236,6 +2236,7 @@ textarea.form-control-lg {
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: #6c757d;
   --bs-gradient: none;
+  border-radius: 0px 20px 20px 0px;
 }
 
 .btn-outline-success {
@@ -2902,6 +2903,14 @@ textarea.form-control-lg {
   margin-top: calc(-1 * var(--bs-nav-tabs-border-width));
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.form-control{
+  border-radius: 20px;
+}
+
+.nav-item{
+  align-self: center;
 }
 
 .nav-pills {
