@@ -22,6 +22,8 @@ div.masthead {
 
 .card{
   border: none;
+  background-color: (0, 0, 0, 0.5);
+  border-radius:30px;
 }
 
 .container{
@@ -29,4 +31,115 @@ div.masthead {
   margin-right: 0px;
   margin-left: 0px;
 
+}
+
+.p-4{
+  border-radius: 25px;
+}
+
+.ms-3{
+  color: #000000;
+}
+
+.gallery_product {
+  position: relative;
+  cursor: pointer; /* Change the cursor to "pointer" when not hovering */
+  z-index: 2;
+ display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden
+}
+.gallery_product img {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%}
+
+
+
+
+
+.gallery_product:hover {
+  cursor: pointer; /* Change the cursor to "pointer" when hovering */
+}
+
+/* Define the hover effect for .middle */
+.gallery_product:hover .middle {
+  opacity: 1;
+}
+
+/* Define the hover effect for .image */
+.gallery_product:hover .image {
+  opacity: 0.3;
+}
+
+.middle {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 90%;
+}
+
+.text {
+  background-color: #000000;
+  opacity: 0.5;
+  color: white;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+
+.filter-button[data-filter="all"] {
+  background-color: #A8E6CF;
+}
+.filter-button[data-filter="hdpe"] {
+  background-color: #DCEDC1;
+}
+.filter-button[data-filter="sprinkle"] {
+  background-color: #FFD3B6;
+}
+.filter-button[data-filter="spray"] {
+  background-color: #FFAAA5;
+}
+.filter-button[data-filter="irrigation"] {
+  background-color: #c5a8e6;
+}
+
+.filter-button
+{
+  z-index: 3;
+  width: 8%;
+  font-weight: 500;
+  margin: 0px 0px 0px 10px;
+  --bs-btn-color: #000000;
+  --bs-btn-bg: rgba(54, 150, 126 , 0.8);
+  --bs-btn-border-color: rgba(54, 150, 126 , 0.8);
+  --bs-btn-focus-shadow-rgb: 11, 172, 204;
+  --bs-btn-disabled-color: #000;
+  --bs-btn-disabled-bg: rgba(54, 150, 126 , 0.8);
+  --bs-btn-disabled-border-color: rgba(54, 150, 126 , 0.8);
+  border-radius: 20px;
+  border: none;
+}
+
+.filter-button:hover
+{z-index: 3;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: rgba(0, 80, 11, 0.8); 
+}
+
+.tags{
+  text-align: -webkit-left;
+  width: 100%;
+  align-self: center;
+}
+
+.editar{
+  margin-right: 30px;
+  border-radius: 20px;
 }
