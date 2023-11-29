@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { PerfilinfoService } from './perfilinfo.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './Components/home/home.component';
@@ -24,7 +24,7 @@ import { WelcomeModule } from './welcome/welcome.module';
     PerfilModule,
     WelcomeModule
   ],
-  providers: [],
+  providers: [PerfilinfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

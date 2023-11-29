@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PerfilComponent } from './perfil.component';
-
+import { ChunkPipe } from './chunk.pipe';
 
 @NgModule({
   declarations: [
-    PerfilComponent
+    PerfilComponent,
+    ChunkPipe
   ],
   exports: [
     PerfilComponent

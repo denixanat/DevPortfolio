@@ -1,3 +1,4 @@
+
 <div class="masthead">
     <div class="container-wrapper">
         <div class="container-fluid py-5 h-100">
@@ -8,13 +9,13 @@
                
                   <div class="rounded-top text-white d-flex flex-row" style="background-color: rgba(0, 0, 0, 0.0); height:200px;">
                     <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                      <img src={{Perfil.image}}
                         alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
                     </div>
                   
                     <div class="ms-3" style="margin-top: 130px;">
-                      <h5>Andy Horwitz</h5>
-                      <p>Web Developer</p>
+                      <h5>{{Perfil.name}}</h5>
+                      <p>{{Perfil.shortdesc}}</p>
                     </div>
                   
                     <div class="ms-auto" style="margin-top: 130px;">
@@ -30,71 +31,64 @@
                       
                      
                       <div class="tags">
-                      <button class="btn btn-default filter-button" data-filter="all">All</button>
-                      <button class="btn btn-default filter-button" data-filter="sprinkle">Database</button>
-                      <button class="btn btn-default filter-button" data-filter="irrigation">Frontend</button>
+                      <button class="btn filter-button" data-filter="all">All</button>
+                      <button class="btn filter-button" data-filter="sprinkle">Database</button>
+                      <button class="btn filter-button" data-filter="irrigation">Frontend</button>
                       </div>
                       
                       <div>
-                        <p class="mb-1 h5"><i class="fab fa-linkedin" style="color: #000000;"></i>
-                        </p>
-                        <p class="small text-muted mb-0">LinkedIn</p>
+                        <a *ngIf="Perfil.links?.linkedin" href="{{ Perfil.links.linkedin }}" target="_blank" rel="noopener noreferrer">
+                          <p class="mb-1 h5"><i class="fab fa-linkedin" style="color: #000000;"></i></p>
+                          <p class="small text-muted mb-0">LinkedIn</p>
+                        </a>
                       </div>
+                      
                       <div class="px-3">
-                        <p class="mb-1 h5"><i class="fab fa-github" style="color: #000000;"></i></p>
-                        <p class="small text-muted mb-0">Github</p>
+                        <a *ngIf="Perfil.links?.github" href="{{ Perfil.links.github }}" target="_blank" rel="noopener noreferrer">
+                          <p class="mb-1 h5"><i class="fab fa-github" style="color: #000000;"></i></p>
+                          <p class="small text-muted mb-0">Github</p>
+                        </a>
                       </div>
+                      
                       <div>
-                        <p class="mb-1 h5"><i class="fab fa-twitter" style="color: #000000;"></i></p>
-                        <p class="small text-muted mb-0">Twitter</p>
+                        <a *ngIf="Perfil.links?.twitter" href="{{ Perfil.links.twitter }}" target="_blank" rel="noopener noreferrer">
+                          <p class="mb-1 h5"><i class="fab fa-twitter" style="color: #000000;"></i></p>
+                          <p class="small text-muted mb-0">Twitter</p>
+                        </a>
                       </div>
+                      
                     </div>
                   </div>
                   <div class="card-body p-4 text-black">
                     <div class="mb-5">
                  
                       <div class="p-4" style="background-color: #f8f9fa;">
-                        <p class="mb-1">Web Developer</p>
-                        <p class="mb-1">Lives in New York</p>
-                        <p class="mb-0">Photographer</p>
+                        <p *ngFor="let line of Perfil.longdesc.split('\n')">{{ line }}</p>
                       </div>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                
-                    </div>
-                    <div class="row g-2">
-                      <div class="gallery_product col mb-2 filter irrigation">
-                        <img src="./assets/1.jpg"
-                          alt="image 1" class="w-100 rounded-3">
-                          <div class="middle">
-                            <div class="text">John Doe</div>
+                      
+                      <div class="d-flex justify-content-between align-items-center mb-4">
+                        <!-- Content for the second div if needed -->
+                      </div>
+                      
+                      <ng-container *ngFor="let proyectoChunk of Perfil.proyectos | chunk: 2">
+                        <!-- Iterate over chunks of proyectos, assuming 2 items per row -->
+                        <div class="row g-2">
+                          <div *ngFor="let proyecto of proyectoChunk" class="gallery_product col mb-2 filter {{ proyecto.filter }}">
+                            <img [src]="proyecto.image" alt="image" class="w-100 rounded-3">
+                            <div class="middle">
+                              <div class="text">{{ proyecto.name }}</div>
                             </div>
-                      </div>
-                      <div class="gallery_product col mb-2 filter irrigation">
-                        <img src="./assets/2.png"
-                          alt="image 1" class="w-100 rounded-3">
-                          <div class="middle">
-                            <div class="text">John Doe</div>
-                            </div>
-                      </div>
-                    </div>
-                    <div class="row g-2">
-                      <div class="gallery_product col filter irrigation">
-                        <img src="./assets/11.jpg"
-                          alt="image 1" class="w-100 rounded-3">
-                          <div class="middle">
-                            <div class="text">John Doe</div>
-                            </div>
-                      </div>
-                      <div class="gallery_product col filter sprinkle">
-                        <img src="./assets/8.png"
-                          alt="image 1" class="w-100 rounded-3">
-                          <div class="middle">
-                            <div class="text">John Doe</div>
-                            </div>
-                      </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                      
+
+
+
                     </div>
                   </div>
+
+
                 </div>
               </div>
             </div>
