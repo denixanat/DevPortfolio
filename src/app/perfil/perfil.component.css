@@ -84,6 +84,12 @@ div.masthead {
   width: 90%;
 }
 
+.buttoncloselogin{    
+  border-radius: 20px;
+  border: none;
+  margin-left: 15px;
+}
+
 .text {
   background-color: #000000;
   opacity: 0.5;
@@ -126,6 +132,25 @@ div.masthead {
   border-radius: 20px;
   border: none;
   flex: 1;
+}
+
+
+.btn-info {
+  --bs-btn-color: #000000;
+  --bs-btn-bg: rgba(54, 150, 126 , 0.8);
+  --bs-btn-border-color: rgba(54, 150, 126 , 0.8);
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: rgba(0, 17, 80, 0.8); 
+  --bs-btn-hover-border-color:rgba(0, 17, 80, 0.8); 
+  --bs-btn-focus-shadow-rgb: 11, 172, 204;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: rgba(0, 17, 80, 0.8); 
+  --bs-btn-active-border-color:rgba(0, 17, 80, 0.8); 
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #000;
+  --bs-btn-disabled-bg: rgba(54, 150, 126 , 0.8);
+  --bs-btn-disabled-border-color: rgba(54, 150, 126 , 0.8);
+  border-radius: 20px;
 }
 
 .filter-button:hover
