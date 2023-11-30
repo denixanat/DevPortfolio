@@ -123,13 +123,13 @@ export class PerfilinfoService{
       {
         projectid:1,
         image: './assets/12.png',
-        name: 'Finance manager',
+        name: 'Backend',
         filter: 'spray'
       },
       {
         projectid:2,
         image: './assets/5.png',
-        name: 'Food Delivery',
+        name: 'Data',
         filter: 'sprinkle'
       }
     ]

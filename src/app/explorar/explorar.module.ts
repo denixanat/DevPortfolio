@@ -1,5 +1,7 @@
+// explorar.module.ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { ExplorarComponent } from './explorar.component';
 
 @NgModule({
@@ -10,7 +12,8 @@ import { ExplorarComponent } from './explorar.component';
     ExplorarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule, // Add FormsModule to the imports array
   ]
 })
 export class ExplorarModule {}

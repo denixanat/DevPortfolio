@@ -25,7 +25,7 @@
 			</div>
 			<br>
 	
-			<div *ngFor="let perfil of perfiles">
+			<div *ngFor="let perfil of filteredPerfiles">
 				<div class="row d-flex">
 				  <div *ngFor="let proyecto of perfil.proyectos" class="gallery_product col-lg-4 col-md-4 col-sm-4 col-6 filter {{ proyecto.filter }}">
 					<img [src]="proyecto.image" class="img-responsive">
@@ -34,11 +34,9 @@
 					</div>
 				  </div>
 				</div>
-			  </div>
+			  </div>			  
 			  
-			  
-			  
-			  
+			
 			  
 		</div>
 	

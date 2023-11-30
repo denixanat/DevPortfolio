@@ -9,6 +9,8 @@ import { NavbarModule } from './navbar/navbar.module';
 import { ExplorarModule } from './explorar/explorar.module';
 import { PerfilModule } from './perfil/perfil.module';
 import { WelcomeModule } from './welcome/welcome.module';
+import { FormsModule } from '@angular/forms';
+import { CommunicationService } from './communication.service';
 
 @NgModule({
   declarations: [
@@ -19,12 +21,13 @@ import { WelcomeModule } from './welcome/welcome.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     NavbarModule,
     ExplorarModule,
     PerfilModule,
-    WelcomeModule
+    WelcomeModule,
   ],
-  providers: [PerfilinfoService],
+  providers: [PerfilinfoService,CommunicationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

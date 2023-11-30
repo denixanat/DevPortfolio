@@ -22,19 +22,26 @@
           <a href="#contact" class="nav-link" *ngIf="!isExplorarModule && !isPerfilModule">Contacto</a>
         </li>
        
-
         <li class="nav-item" *ngIf="isExplorarModule || isPerfilModule">
-          <form class="form-inline">
+          <form class="form-inline" (submit)="searchByTerm($event)">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search">
+              <input type="text" id="searchTerm" class="form-control"
+                placeholder="Search"
+                [(ngModel)]="searchTerm"
+                name="searchTerm"
+              />
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">
+                <button class="btn btn-outline-secondary" type="submit">
                   <i class="fa fa-search"></i>
                 </button>
               </div>
             </div>
           </form>
         </li>
+        
+        
+        
+        
 
         <li class="nav-item">
           <a [routerLink]="['./explorar']" class="nav-link" *ngIf="!isExplorarModule">Explorar</a>
