@@ -143,6 +143,11 @@
 
 
 
+
+
+
+
+
                   <div class="p-4 text-black" style="background-color: #f8f9fa;">
                     <div class="d-flex justify-content-start text-center py-1">
                       
@@ -178,6 +183,57 @@
                     </div>
 
 
+
+
+
+
+
+
+
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header border-bottom-0">
+                            <button type="button" class="buttoncloselogin" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                    
+                          <div class="modal-body">
+                            <div class="form-title text-center">
+                              <h4>Eliminar proyecto</h4><br>
+                            </div>
+                                <div class="d-flex flex-column text-center">
+                                  <form #FormularioDelete="ngForm">
+                                    <div class="form-group">
+                                      <label for="projectToDelete">Selecciona el proyecto a eliminar:</label>
+                                      <select class="form-control" id="projectToDelete" name="projectToDelete" ngModel>
+                                        <option *ngFor="let proyecto of Perfil.proyectos" [ngValue]="proyecto.projectid">{{ proyecto.name }}</option>
+                                      </select>
+                                    </div>
+                                  
+                                    <button type="button" class="btn btn-info btn-block btn-round" data-toggle="modal" data-target="#deleteModal">
+                                      Eliminar proyecto
+                                    </button>
+                                  </form>
+                                  
+                                  </div>
+                                  
+                    
+                                </div>
+                                
+                              
+                              </div>
+                          </div>
+                    
+                        </div>
+                         
+                      </div>
+
+
+
+
+                    
                   
                   <div class="card-body p-4 text-black">
                     <div class="mb-5">
@@ -192,8 +248,16 @@
                           <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                           <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
                         </svg> Añadir proyecto</button>
+                        <button class="editar" data-toggle="modal" data-target="#deleteModal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                        </svg>Eliminar proyecto</button>
                       </div>
 
+
+                
+
+                      
                       <div *ngIf="Perfil.proyectos.length > 0">
                         <div class="row g-2">
                           <div *ngFor="let proyecto of Perfil.proyectos" class="gallery_product col-md-6 mb-2 filter {{ proyecto.filter }}">

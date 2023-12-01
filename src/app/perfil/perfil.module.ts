@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PerfilComponent } from './perfil.component';
 import { ChunkPipe } from './chunk.pipe';
 import { FormsModule } from '@angular/forms';
-
+import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -15,7 +15,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ]
 })
 export class PerfilModule { }

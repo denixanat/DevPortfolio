@@ -267,7 +267,7 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-4 text-center mb-5 mb-lg-0">
                         <i class="bi-envelope fs-2 mb-3 text-muted"></i>
-                        <div>denixanatdev@gmail.com</div>
+                        <div>denixanatdev&#64;gmail.com</div>
                     </div>
                 </div>
             </div>
@@ -285,6 +285,66 @@
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
-</html>
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js">     </script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script>
+           $(document).ready(function () {
+              console.log("Document is ready. Starting carousel.");
+              const carouselText = [
+                 { text: "visión", color: "white" },
+                 { text: "código", color: "white" },
+                 { text: "portafolio", color: "white" }
+              ];
+              carousel(carouselText, "#feature-text");
+           });
+        
+           async function carousel(carouselList, eleRef) {
+              console.log("Carousel function started.");
+        
+              var i = 0;
+              while (true) {
+                 updateFontColor(eleRef, carouselList[i].color);
+                 await typeSentence(carouselList[i].text, eleRef);
+                 await waitForMs(1500);
+                 await deleteSentence(eleRef);
+                 await waitForMs(500);
+                 i++;
+                 if (i >= carouselList.length) { i = 0; }
+              }
+           }
+        
+           async function typeSentence(sentence, eleRef, delay = 100) {
+              const letters = sentence.split("");
+              let i = 0;
+              while (i < letters.length) {
+                 await waitForMs(delay);
+                 $(eleRef).append(letters[i]);
+                 i++;
+              }
+              return;
+           }
+        
+           async function deleteSentence(eleRef) {
+              const sentence = $(eleRef).html();
+              const letters = sentence.split("");
+              let i = 0;
+              while (letters.length > 0) {
+                 await waitForMs(100);
+                 letters.pop();
+                 $(eleRef).html(letters.join(""));
+              }
+           }
+        
+           function updateFontColor(eleRef, color) {
+              $(eleRef).css('color', color);
+           }
+        
+           function waitForMs(ms) {
+              return new Promise(resolve => setTimeout(resolve, ms))
+           }
+        
+           // Your existing JavaScript code...
+        
+        </script>
+        </body>
+        </html>

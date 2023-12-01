@@ -1,14 +1,19 @@
-import { Component, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { Perfil, Proyecto } from '../interfaces/perfiles.interfaces';
 import { PerfilinfoService } from '../perfilinfo.service';
 import { NgForm } from '@angular/forms';
+
+// Declare global variables
+declare var $: any;
+declare var bootstrap: any;
+declare var SimpleLightbox: any;
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
-export class PerfilComponent {
+export class PerfilComponent implements AfterViewInit {
   @Input()
   public Perfil: Perfil = {
     userid: 0,
@@ -36,7 +41,9 @@ export class PerfilComponent {
   tempGithub: string = "";
   tempTwitter: string = "";
 
-  constructor(private perfilInfoService: PerfilinfoService, private cdr: ChangeDetectorRef) {}
+  constructor(private perfilInfoService: PerfilinfoService, private cdr: ChangeDetectorRef) {
+  
+  }
 
   ngOnInit() {
     this.perfilInfoService.getPerfilData().subscribe((data: Perfil[]) => {
@@ -52,6 +59,31 @@ export class PerfilComponent {
       }
     });
   }
+
+  ngAfterViewInit(): void {
+    $(document).ready(() => {
+      // Your filtering script here, based on the structure of your HTML
+      // Example:
+      $(".filter-button").click(function (this: HTMLElement) {
+        const value = $(this).attr('data-filter');
+  
+        if (value === "all") {
+          // Show all profiles
+          $('.filter').show('1000');
+        } else {
+          // Hide profiles not matching the filter
+          $(".filter").not('.' + value).hide('3000');
+          // Show profiles matching the filter
+          $('.filter').filter('.' + value).show('3000');
+        }
+  
+        // Update the class for the active state
+        $(".filter-button").removeClass("active");
+        $(this).addClass("active");
+      });
+    });
+  }
+  
 
   agregarNuevoProyecto(form: NgForm): void {
     const nuevoProyecto: Proyecto = {
