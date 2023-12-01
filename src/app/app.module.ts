@@ -11,12 +11,14 @@ import { PerfilModule } from './perfil/perfil.module';
 import { WelcomeModule } from './welcome/welcome.module';
 import { FormsModule } from '@angular/forms';
 import { CommunicationService } from './communication.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

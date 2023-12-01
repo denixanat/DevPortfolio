@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ExplorarComponent } from './explorar/explorar.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: "home", component: WelcomeComponent },
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: "non-Page", component: WelcomeComponent },
   { path: "perfil", component: PerfilComponent },
   { path: "", redirectTo: "home", pathMatch: "full"},
-  { path: '**', redirectTo: 'non-Page', pathMatch: 'full' },
+  { path: '**', redirectTo: 'not-found', pathMatch: 'full' },
+  { path: 'not-found', component: NotFoundComponent},
 ];
 
 @NgModule({
