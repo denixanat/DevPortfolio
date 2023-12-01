@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Perfil } from 'src/app/interfaces/perfiles.interfaces';
+import { Perfil, Proyecto } from 'src/app/interfaces/perfiles.interfaces';
 @Injectable({
   providedIn: 'root'
 })
@@ -134,6 +134,45 @@ export class PerfilinfoService{
       }
     ]
   }];
+
+
+ // Método para agregar un nuevo proyecto a un perfil existente
+ agregarProyectoAlPerfil(usuarioId: number, nuevoProyecto: Proyecto): Observable<Perfil[]> {
+  const perfilIndex = this.perfiles.findIndex(perfil => perfil.userid === usuarioId);
+
+  if (perfilIndex !== -1) {
+    // Asignar un nuevo projectid al proyecto
+    nuevoProyecto.projectid = this.perfiles[perfilIndex].proyectos.length + 1;
+
+    // Agregar el nuevo proyecto al perfil
+    this.perfiles[perfilIndex].proyectos.push(nuevoProyecto);
+
+    // Devolver una copia actualizada de la lista de perfiles
+    return of([...this.perfiles]);
+  } else {
+    // Si el perfil no se encuentra, puedes manejarlo según tus necesidades
+    console.error(`No se encontró el perfil con ID ${usuarioId}.`);
+    return of(this.perfiles);
+  }
+}
+
+
+actualizarPerfil(usuarioId: number, datosPerfil: any): Observable<Perfil[]> {
+  const perfilIndex = this.perfiles.findIndex(perfil => perfil.userid === usuarioId);
+
+  if (perfilIndex !== -1) {
+    // Actualizar los datos del perfil
+    this.perfiles[perfilIndex] = { ...this.perfiles[perfilIndex], ...datosPerfil };
+
+    // Devolver una copia actualizada de la lista de perfiles
+    return of([...this.perfiles]);
+  } else {
+    // Si el perfil no se encuentra, puedes manejarlo según tus necesidades
+    console.error(`No se encontró el perfil con ID ${usuarioId}.`);
+    return of(this.perfiles);
+  }
+}
+
 
   getPerfilData(): Observable<Perfil[]> {
     return of(this.perfiles);

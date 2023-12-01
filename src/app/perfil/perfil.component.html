@@ -40,29 +40,35 @@
           <h4>Editar Perfil</h4><br>
         </div>
         <div class="d-flex flex-column text-center">
-          <form>
+          <form #perfilForm="ngForm" (ngSubmit)="actualizarPerfil(perfilForm)">
             <div class="form-group">
-              <label>Título</label>
-              <input type="text" class="form-control" id="shortdesc"placeholder="Descripción corta">
+              <label for="shortdesc">Título</label>
+              <input type="text" class="form-control" id="shortdesc" name="shortdesc" [(ngModel)]="tempShortDesc" placeholder="Descripción corta">
             </div>
             <div class="form-group">
-              <label>Descripción</label>
-              <input type="text" class="form-control" id="longdesc" placeholder="Sobre tí">
+              <label for="longdesc">Descripción</label>
+              <input type="text" class="form-control" id="longdesc" name="longdesc" [(ngModel)]="tempLongDesc" placeholder="Sobre ti">
             </div>
             <div class="form-group">
-              <label>Foto de perfil</label>
-              <input type="text" class="form-control" id="image" placeholder="Añade un enlace">
+              <label for="image">Foto de perfil</label>
+              <input type="text" class="form-control" id="image" name="image" [(ngModel)]="tempProfileImage" placeholder="Añade un enlace">
             </div>
             <div class="form-group">
-              <label>Enlaces</label>
-              <input type="text" class="form-control" id="linkedin" placeholder="LinkedIn">
-              <input type="text" class="form-control" id="github" placeholder="Github">
-              <input type="text" class="form-control" id="twitter" placeholder="Twitter">
-
+              <label for="linkedin">LinkedIn</label>
+              <input type="text" class="form-control" id="linkedin" name="linkedin" [(ngModel)]="tempLinkedin" placeholder="LinkedIn">
+            </div>
+            <div class="form-group">
+              <label for="github">Github</label>
+              <input type="text" class="form-control" id="github" name="github" [(ngModel)]="tempGithub" placeholder="Github">
+            </div>
+            <div class="form-group">
+              <label for="twitter">Twitter</label>
+              <input type="text" class="form-control" id="twitter" name="twitter" [(ngModel)]="tempTwitter" placeholder="Twitter">
             </div>
             <br>
-            <button type="button" class="btn btn-info btn-block btn-round">Guardar cambios</button><br>
+            <button type="submit" class="btn btn-info btn-block btn-round">Guardar cambios</button><br>
           </form>
+          
         
         </div>
       </div>
@@ -81,31 +87,55 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class="modal-body">
         <div class="form-title text-center">
           <h4>Añadir proyecto</h4><br>
         </div>
-        <div class="d-flex flex-column text-center">
-          <form>
-            <div class="form-group">
-              <label>Nombre</label>
-              <input type="text" class="form-control" id="name"placeholder="Descripción corta">
+            <div class="d-flex flex-column text-center">
+                <form #miFormulario="ngForm">
+                  <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="tempNombre" placeholder="Descripción corta" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="longdesc">Tag</label>
+                    <input type="text" class="form-control" id="longdesc" name="longdesc" [(ngModel)]="tempFiltro" placeholder="Filtro" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="image">Imagen</label>
+                    <input type="text" class="form-control" id="image" name="image" [(ngModel)]="tempImagen" placeholder="Añade un enlace" required>
+                  </div>
+                  
+                  <br>
+                  <button type="button" (click)="agregarNuevoProyecto(miFormulario)" class="btn btn-info btn-block btn-round">Añadir proyecto</button><br>
+                  
+                  <!-- Mostrar un mensaje de éxito o error según el estado de proyectoAgregado -->
+                  <div *ngIf="proyectoAgregado; else error">
+                    <p class="text-success">¡Proyecto agregado exitosamente!</p>
+                    <!-- Mostrar información del nuevo proyecto agregado -->
+                    <div *ngIf="nuevoProyecto">
+                      <p>ID del nuevo proyecto: {{ nuevoProyecto.projectid }}</p>
+                      <p>Nombre del proyecto: {{ nuevoProyecto.name }}</p>
+                      <p>Filtro del proyecto: {{ nuevoProyecto.filter }}</p>
+                      <p>Imagen del proyecto: {{ nuevoProyecto.image }}</p>
+                      <!-- Agrega aquí más campos según tus necesidades -->
+                    </div>
+                  </div>
+                  
+                  <ng-template #error>
+                    <p class="text-danger">Hubo un error al agregar el proyecto. Por favor, inténtalo de nuevo.</p>
+                  </ng-template>
+                </form>
+              </div>
+              
+
             </div>
-            <div class="form-group">
-              <label>Tag</label>
-              <input type="text" class="form-control" id="longdesc" placeholder="Filtro">
-            </div>
-            <div class="form-group">
-              <label>Imagen</label>
-              <input type="text" class="form-control" id="image" placeholder="Añade un enlace">
-            </div>
+            
           
-            <br>
-            <button type="button" class="btn btn-info btn-block btn-round">Añadir proyecto</button><br>
-          </form>
-        
-        </div>
+          </div>
       </div>
+
     </div>
      
   </div>
@@ -163,20 +193,18 @@
                           <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
                         </svg> Añadir proyecto</button>
                       </div>
-                      
-                      <ng-container *ngFor="let proyectoChunk of Perfil.proyectos | chunk: 2">
-                        <!-- Iterate over chunks of proyectos, assuming 2 items per row -->
+
+                      <div *ngIf="Perfil.proyectos.length > 0">
                         <div class="row g-2">
-                          <div *ngFor="let proyecto of proyectoChunk" class="gallery_product col mb-2 filter {{ proyecto.filter }}">
+                          <div *ngFor="let proyecto of Perfil.proyectos" class="gallery_product col-md-6 mb-2 filter {{ proyecto.filter }}">
                             <img [src]="proyecto.image" alt="image" class="w-100 rounded-3">
                             <div class="middle">
                               <div class="text">{{ proyecto.name }}</div>
                             </div>
                           </div>
                         </div>
-                      </ng-container>
                       
-
+                          
 
 
                     </div>
@@ -188,5 +216,3 @@
             </div>
           </div>
     
-    </div>
-</div>
