@@ -10,10 +10,17 @@ export class PerfilinfoService {
 
   public perfiles: Perfil[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    window.localStorage.setItem("token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWF0IjoxNzAxNTQ5OTIyLCJleHAiOjE3MDE1NjQzMjJ9.xzzgYguWES2gt5Bw72-s0P3xPF9GC58ErT9CjwRjWfc");
+  }
 
   fetchdatafromapi(): Observable<any> {
-    return this.http.get("http://localhost:8080/api/perfiles");
+    return this.http.get("http://localhost:8080/api/perfiles", 
+    {
+      headers:{
+        "Authorization":window.localStorage.getItem("token")?? "",
+      }
+    });
   }
 
   agregarProyectoAlPerfil(usuarioId: number, nuevoProyecto: Proyecto): Observable<Perfil[]> {
