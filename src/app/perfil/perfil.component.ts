@@ -5,8 +5,6 @@ import { NgForm } from '@angular/forms';
 
 // Declare global variables
 declare var $: any;
-declare var bootstrap: any;
-declare var SimpleLightbox: any;
 
 @Component({
   selector: 'app-perfil',
@@ -41,9 +39,7 @@ export class PerfilComponent implements AfterViewInit {
   tempGithub: string = "";
   tempTwitter: string = "";
 
-  constructor(private perfilInfoService: PerfilinfoService, private cdr: ChangeDetectorRef) {
-  
-  }
+  constructor(private perfilInfoService: PerfilinfoService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.perfilInfoService.getPerfilData().subscribe((data: Perfil[]) => {
@@ -61,12 +57,12 @@ export class PerfilComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    // Your filtering script here, based on the structure of your HTML
+    // Example:
     $(document).ready(() => {
-      // Your filtering script here, based on the structure of your HTML
-      // Example:
       $(".filter-button").click(function (this: HTMLElement) {
         const value = $(this).attr('data-filter');
-  
+
         if (value === "all") {
           // Show all profiles
           $('.filter').show('1000');
@@ -76,14 +72,13 @@ export class PerfilComponent implements AfterViewInit {
           // Show profiles matching the filter
           $('.filter').filter('.' + value).show('3000');
         }
-  
+
         // Update the class for the active state
         $(".filter-button").removeClass("active");
         $(this).addClass("active");
       });
     });
   }
-  
 
   agregarNuevoProyecto(form: NgForm): void {
     const nuevoProyecto: Proyecto = {
@@ -126,6 +121,19 @@ export class PerfilComponent implements AfterViewInit {
       },
       error => {
         console.error('Error al actualizar el perfil:', error);
+      }
+    );
+  }
+
+  eliminarProyecto(usuarioId: number, projectId: number): void {
+    this.perfilInfoService.eliminarProyecto(usuarioId, projectId).subscribe(
+      perfiles => {
+        this.Perfil = perfiles.find(profile => profile.userid === this.Perfil.userid) || this.Perfil;
+        console.log('Proyecto eliminado con éxito');
+        this.cdr.detectChanges(); // Ensure to call detectChanges after updating the data
+      },
+      error => {
+        console.error('Error al eliminar el proyecto:', error);
       }
     );
   }
