@@ -3,7 +3,7 @@ export interface Proyecto{
     image: string;
     name: string;
     filter: string;
-}
+};
 
 export interface Perfil {
     userid: number;
@@ -17,4 +17,4 @@ export interface Perfil {
       twitter?: string;
     };
     proyectos: Proyecto[];
-  }
+  };

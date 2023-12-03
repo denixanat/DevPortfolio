@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Perfil, Proyecto } from 'src/app/interfaces/perfiles.interfaces';
-
+import { Usuario } from './interfaces/usuario.interfaces';
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,68 +12,70 @@ export class PerfilinfoService {
   public perfiles: Perfil[] = [];
 
   constructor(private http: HttpClient) {
-    window.localStorage.setItem("token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwiaWF0IjoxNzAxNTQ5OTIyLCJleHAiOjE3MDE1NjQzMjJ9.xzzgYguWES2gt5Bw72-s0P3xPF9GC58ErT9CjwRjWfc");
+  
+  }
+  login(datacredenciales:Usuario): Observable<any> {
+    // Perform login API request
+    return this.http.post('http://localhost:8080/api/auth/login', datacredenciales );
   }
 
+  setToken(token: string): void {
+    window.localStorage.setItem("token", token);
+  }
+
+  isAuthenticated(): boolean {
+    return !!window.localStorage.getItem("token");
+  }
+
+  private messageSubject = new BehaviorSubject<string | null>(null);
+
+  setMessage(message: string): void {
+    this.messageSubject.next(message);
+  }
+
+  getMessage(): BehaviorSubject<string | null> {
+    return this.messageSubject;
+  }
+  
+
   fetchdatafromapi(): Observable<any> {
-    return this.http.get("http://localhost:8080/api/perfiles", 
-    {
-      headers:{
-        "Authorization":window.localStorage.getItem("token")?? "",
+    return this.http.get('http://localhost:8080/api/perfiles', {
+      headers: {
+        "Authorization": window.localStorage.getItem("token") || "",
       }
     });
   }
 
-  agregarProyectoAlPerfil(usuarioId: number, nuevoProyecto: Proyecto): Observable<Perfil[]> {
-    const perfilIndex = this.perfiles.findIndex(perfil => perfil.userid === usuarioId);
 
-    if (perfilIndex !== -1) {
-      nuevoProyecto.projectid = this.perfiles[perfilIndex].proyectos.length + 1;
-      this.perfiles[perfilIndex].proyectos.push(nuevoProyecto);
-      return of([...this.perfiles]);
-    } else {
-      console.error(`No se encontró el perfil con ID ${usuarioId}.`);
-      return of(this.perfiles);
-    }
-  }
+  eliminarProyectoDelPerfil(usuarioId: number, projectId: number): Observable<any> {
+    // Construct the URL for the delete request
+    const url = `http://localhost:8080/api/perfiles/${usuarioId}/proyectos/${projectId}`;
 
-  eliminarProyecto(usuarioId: number, projectId: number): Observable<Perfil[]> {
-    const perfilIndex = this.perfiles.findIndex(perfil => perfil.userid === usuarioId);
-  
-    if (perfilIndex !== -1) {
-      const updatedProyectos = this.perfiles[perfilIndex].proyectos.filter(proyecto => proyecto.projectid !== projectId);
-      this.perfiles[perfilIndex].proyectos = updatedProyectos;
-  
-      // Make an HTTP request to update the data on the server
-      this.http.put(`http://localhost:8080/api/perfiles/${usuarioId}`, this.perfiles[perfilIndex])
-        .subscribe(
-          () => {
-            console.log(`Proyecto con ID ${projectId} eliminado con éxito.`);
-          },
-          error => {
-            console.error('Error al actualizar el perfil en el servidor:', error);
-          }
-        );
-  
-      return of([...this.perfiles]);
-    } else {
-      console.error(`No se encontró el perfil con ID ${usuarioId}.`);
-      return of(this.perfiles);
-    }
+    // Return the observable directly from the HTTP delete request
+    return this.http.delete(url);
   }
   
 
-  actualizarPerfil(usuarioId: number, datosPerfil: any): Observable<Perfil[]> {
-    const perfilIndex = this.perfiles.findIndex(perfil => perfil.userid === usuarioId);
-
-    if (perfilIndex !== -1) {
-      this.perfiles[perfilIndex] = { ...this.perfiles[perfilIndex], ...datosPerfil };
-      return of([...this.perfiles]);
-    } else {
-      console.error(`No se encontró el perfil con ID ${usuarioId}.`);
-      return of(this.perfiles);
-    }
+  actualizarPerfil(datosPerfil: any): Observable<any> {
+    const url = `http://localhost:8080/api/perfiles/656a6eaafe1536d91cd11300/profile`;
+  
+    return this.http.put(url, datosPerfil);
   }
+  
+  agregarProyectoAlPerfil(nuevoProyecto: Proyecto, usuarioId: number): Observable<any> {
+    nuevoProyecto.projectid = this.perfiles[0].proyectos.length + 1;
+
+    // Push the new project into the proyectos array
+    this.perfiles[0].proyectos.push(nuevoProyecto);
+    console.log(nuevoProyecto);
+
+    // Return the observable directly from the HTTP request
+    const url = `http://localhost:8080/api/perfiles/${usuarioId}/proyectos`;
+
+    // Send only the nuevoProyecto data in the post request
+    return this.http.post(url, nuevoProyecto);
+  }
+
 
   getPerfilData(): Observable<Perfil[]> {
     return of(this.perfiles);

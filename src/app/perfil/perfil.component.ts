@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, AfterViewInit, NgZone } from '@angular/core';
 import { Perfil, Proyecto } from '../interfaces/perfiles.interfaces';
 import { PerfilinfoService } from '../perfilinfo.service';
 import { NgForm } from '@angular/forms';
@@ -39,7 +39,12 @@ export class PerfilComponent implements AfterViewInit {
   tempGithub: string = "";
   tempTwitter: string = "";
 
-  constructor(private perfilInfoService: PerfilinfoService, private cdr: ChangeDetectorRef) {}
+  constructor(private perfilInfoService: PerfilinfoService, private cdr: ChangeDetectorRef, private ngZone: NgZone) {}
+
+
+
+
+
 
   ngOnInit() {
     this.perfilInfoService.getPerfilData().subscribe((data: Perfil[]) => {
@@ -81,60 +86,75 @@ export class PerfilComponent implements AfterViewInit {
   }
 
   agregarNuevoProyecto(form: NgForm): void {
-    const nuevoProyecto: Proyecto = {
+    const nuevoProyecto = {
       projectid: this.nextProjectId++,
+      image: this.tempImagen,
       name: this.tempNombre,
       filter: this.tempFiltro,
-      image: this.tempImagen,
     };
 
     this.nuevoProyecto = nuevoProyecto;
 
-    this.perfilInfoService.agregarProyectoAlPerfil(this.Perfil.userid, nuevoProyecto).subscribe(
-      perfiles => {
-        this.Perfil = perfiles.find(profile => profile.userid === this.Perfil.userid) || this.Perfil;
+    this.perfilInfoService.agregarProyectoAlPerfil(nuevoProyecto, 1).subscribe({
+      next: () => {
         this.proyectoAgregado = true;
         form.reset();
         this.cdr.detectChanges();
+
+        console.log(this.nuevoProyecto?.name);
       },
-      error => {
+      error: (error: any) => {
         console.error('Error al agregar el proyecto:', error);
         this.proyectoAgregado = false;
-      }
-    );
+      },
+    });
   }
 
+  
   actualizarPerfil(form: NgForm): void {
-    this.perfilInfoService.actualizarPerfil(this.Perfil.userid, {
-      shortdesc: form.value.shortdesc,
-      longdesc: form.value.longdesc,
-      image: form.value.image,
-      links: {
-        linkedin: form.value.linkedin,
-        github: form.value.github,
-        twitter: form.value.twitter,
-      }
-    }).subscribe(
-      perfiles => {
-        this.Perfil = perfiles.find(profile => profile.userid === this.Perfil.userid) || this.Perfil;
+  const perfilUpdate = {
+    name: form.value.name,
+    image: form.value.image,
+    shortdesc: form.value.shortdesc,
+    longdesc: form.value.longdesc,
+    links: {
+      linkedin: form.value.linkedin,
+      github: form.value.github,
+      twitter: form.value.twitter,
+    }
+  };
+
+  this.perfilInfoService.actualizarPerfil(perfilUpdate)
+    .subscribe({
+      next: (updatedProfile: any) => {
+        this.Perfil = updatedProfile;
+        console.log(this.Perfil.name);
         console.log('Perfil actualizado con éxito');
       },
-      error => {
+      error: (error: any) => {
         console.error('Error al actualizar el perfil:', error);
       }
-    );
-  }
+    });
+}
 
-  eliminarProyecto(usuarioId: number, projectId: number): void {
-    this.perfilInfoService.eliminarProyecto(usuarioId, projectId).subscribe(
-      perfiles => {
-        this.Perfil = perfiles.find(profile => profile.userid === this.Perfil.userid) || this.Perfil;
-        console.log('Proyecto eliminado con éxito');
-        this.cdr.detectChanges(); // Ensure to call detectChanges after updating the data
-      },
-      error => {
-        console.error('Error al eliminar el proyecto:', error);
-      }
-    );
-  }
+eliminarProyecto(projectId: number): void {
+  const usuarioId = 1; // Fixed user ID as per your requirement
+
+  this.perfilInfoService.eliminarProyectoDelPerfil(usuarioId, projectId).subscribe(
+    () => {
+      console.log('Proyecto eliminado con éxito');
+
+      // Manually remove the project from the local array
+      this.Perfil.proyectos = this.Perfil.proyectos.filter(proyecto => proyecto.projectid !== projectId);
+
+      // Use NgZone to run the change detection in Angular's zone
+      this.ngZone.run(() => {
+        this.cdr.detectChanges();
+      });
+    },
+    error => {
+      console.error('Error al eliminar el proyecto:', error);
+    }
+  );
+}
 }

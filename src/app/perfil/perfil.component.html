@@ -40,33 +40,37 @@
           <h4>Editar Perfil</h4><br>
         </div>
         <div class="d-flex flex-column text-center">
-          <form #perfilForm="ngForm" (ngSubmit)="actualizarPerfil(perfilForm)">
+          <form #perfilForm="ngForm">
+            <div class="form-group">
+              <label for="shortdesc">Nombre</label>
+              <input type="text" class="form-control" id="name" name="name" [(ngModel)]="Perfil.name" placeholder="Nombre">
+            </div>
             <div class="form-group">
               <label for="shortdesc">Título</label>
-              <input type="text" class="form-control" id="shortdesc" name="shortdesc" [(ngModel)]="tempShortDesc" placeholder="Descripción corta">
+              <input type="text" class="form-control" id="shortdesc" name="shortdesc" [(ngModel)]="Perfil.shortdesc" placeholder="Descripción corta">
             </div>
             <div class="form-group">
               <label for="longdesc">Descripción</label>
-              <input type="text" class="form-control" id="longdesc" name="longdesc" [(ngModel)]="tempLongDesc" placeholder="Sobre ti">
+              <input type="text" class="form-control" id="longdesc" name="longdesc" [(ngModel)]="Perfil.longdesc" placeholder="Sobre ti">
             </div>
             <div class="form-group">
               <label for="image">Foto de perfil</label>
-              <input type="text" class="form-control" id="image" name="image" [(ngModel)]="tempProfileImage" placeholder="Añade un enlace">
+              <input type="text" class="form-control" id="image" name="image" [(ngModel)]="Perfil.image" placeholder="Añade un enlace">
             </div>
             <div class="form-group">
               <label for="linkedin">LinkedIn</label>
-              <input type="text" class="form-control" id="linkedin" name="linkedin" [(ngModel)]="tempLinkedin" placeholder="LinkedIn">
+              <input type="text" class="form-control" id="linkedin" name="linkedin" [(ngModel)]="Perfil.links.linkedin" placeholder="LinkedIn">
             </div>
             <div class="form-group">
               <label for="github">Github</label>
-              <input type="text" class="form-control" id="github" name="github" [(ngModel)]="tempGithub" placeholder="Github">
+              <input type="text" class="form-control" id="github" name="github" [(ngModel)]="Perfil.links.github" placeholder="Github">
             </div>
             <div class="form-group">
               <label for="twitter">Twitter</label>
-              <input type="text" class="form-control" id="twitter" name="twitter" [(ngModel)]="tempTwitter" placeholder="Twitter">
+              <input type="text" class="form-control" id="twitter" name="twitter" [(ngModel)]="Perfil.links.twitter" placeholder="Twitter">
             </div>
             <br>
-            <button type="submit" class="btn btn-info btn-block btn-round">Guardar cambios</button><br>
+            <button type="submit" class="btn btn-info btn-block btn-round" (click)="actualizarPerfil(perfilForm)">Guardar cambios</button><br>
           </form>
           
         
@@ -93,23 +97,24 @@
           <h4>Añadir proyecto</h4><br>
         </div>
             <div class="d-flex flex-column text-center">
-                <form #miFormulario="ngForm">
-                  <div class="form-group">
-                    <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="tempNombre" placeholder="Descripción corta" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="longdesc">Tag</label>
-                    <input type="text" class="form-control" id="longdesc" name="longdesc" [(ngModel)]="tempFiltro" placeholder="Filtro" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="image">Imagen</label>
-                    <input type="text" class="form-control" id="image" name="image" [(ngModel)]="tempImagen" placeholder="Añade un enlace" required>
-                  </div>
-                  
-                  <br>
-                  <button type="button" (click)="agregarNuevoProyecto(miFormulario)" class="btn btn-info btn-block btn-round">Añadir proyecto</button><br>
-                  
+              <form #miFormulario="ngForm" >
+                <div class="form-group">
+                  <label for="name">Nombre</label>
+                  <input type="text" class="form-control" id="name" name="name" [(ngModel)]="tempNombre" placeholder="Descripción corta" required>
+                </div>
+                <div class="form-group">
+                  <label for="longdesc">Tag</label>
+                  <input type="text" class="form-control" id="longdesc" name="longdesc" [(ngModel)]="tempFiltro" placeholder="Filtro" required>
+                </div>
+                <div class="form-group">
+                  <label for="image">Imagen</label>
+                  <input type="text" class="form-control" id="image" name="image" [(ngModel)]="tempImagen" placeholder="Añade un enlace" required>
+                </div>
+                
+                <br>
+                <button type="submit" class="btn btn-info btn-block btn-round" (click)="agregarNuevoProyecto(miFormulario)">Añadir proyecto</button><br>
+              
+              
                   <!-- Mostrar un mensaje de éxito o error según el estado de proyectoAgregado -->
                   <div *ngIf="proyectoAgregado; else error">
                     <p class="text-success">¡Proyecto agregado exitosamente!</p>
@@ -218,7 +223,7 @@
                             <div class="middle">
                               <div class="text">{{ proyecto.name }}</div>
                               <!-- Button to delete the project -->
-                              <button class="btn btn-info btn-block btn-round" (click)="eliminarProyecto(Perfil.userid, proyecto.projectid)">Eliminar proyecto</button>
+                              <button class="btn btn-info btn-block btn-round" (click)="eliminarProyecto( proyecto.projectid)">Eliminar proyecto</button>
                             </div>
                           </div>
                         </div>

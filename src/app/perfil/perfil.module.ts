@@ -4,7 +4,7 @@ import { PerfilComponent } from './perfil.component';
 import { ChunkPipe } from './chunk.pipe';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http'
-
+import { ReactiveFormsModule } from '@angular/forms'
 @NgModule({
   declarations: [
     PerfilComponent,
@@ -16,7 +16,8 @@ import {HttpClientModule} from '@angular/common/http'
   imports: [
     CommonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ]
 })
 export class PerfilModule { }
